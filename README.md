@@ -6,7 +6,8 @@
   * duck API, spotify API
 * Madelyn Mao : 
   * Login, html table for 15DUCK + arrow buttons
-* JS, getting ducks to appear on canvas, user clicking 
+* William
+  * JS, getting ducks to appear on canvas, user clicking 
  
 ## Description:
   
