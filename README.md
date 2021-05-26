@@ -1,12 +1,12 @@
 # Title
 ## Roster & Roles:
 * Benjamin Gallai (Project Manager): 
-  * 
-  * 
+  * all the math behind ducksu and connecting canvas to script
 * Andrew Jiang : 
-  * 
+  * duck API, spotify API
 * Madelyn Mao : 
-  * 
+  * Login, html table for 15DUCK + arrow buttons
+* JS, getting ducks to appear on canvas, user clicking 
  
 ## Description:
   
