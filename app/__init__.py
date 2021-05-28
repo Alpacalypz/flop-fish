@@ -24,11 +24,6 @@ db.commit()
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(24)
 
-
-with open("keys/key_api0.txt", "r") as spotify_keys:
-    client_id = spotify_keys.readline()[:-1]
-    client_secret = spotify_keys.readline()[:-1]
-
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
 	if 'username' in session:
@@ -68,7 +63,7 @@ def authenticate():
             userid = c.fetchone()
             session['UserID'] = int(userid[0])
 
-            
+
             
             return render_template('response.html')
     else:
@@ -102,6 +97,16 @@ def signup():
 @app.route("/newuser", methods = ['GET','POST'])
 def newuser():
         return render_template('signup.html',status=False)
+
+
+@app.route("/ducksu", methods = ['GET', 'POST'])
+def ducksu():
+    return render_template("ducksu.html", status = False)
+
+@app.route("/duck15", methods = ['GET', 'POST'])
+def duck15():
+    return render_template("duck15.html", status = False)
+
 
 
 if __name__ == "__main__": #false if this file imported as module
