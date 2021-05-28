@@ -105,6 +105,17 @@ def ducksu():
 
 @app.route("/duck15", methods = ['GET', 'POST'])
 def duck15():
+    n= [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    random.shuffle(n)
+    arr= [
+    [n[0],n[1],n[2],n[3]],
+    [n[4], n[5], n[6],n[7]],
+    [n[8], n[9], n[10],n[11]],
+    [n[12], n[13], n[14],n[15]]
+    ]
+
+
+    
     return render_template("duck15.html", status = False)
 
 
