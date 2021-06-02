@@ -4,5 +4,8 @@ flop-fish -- 2021-05-25 10:15PM
 madelynM -- 2021-05-27 07:53PM
 - updated design doc, closed issues
 
-madelynM -- 2021-05-27 11:003PM
+madelynM -- 2021-05-27 11:03PM
 - added basic framework
+
+madelynM, williamL -- 2021-06-01 10:56PM
+- finished duck15 mechanisms
