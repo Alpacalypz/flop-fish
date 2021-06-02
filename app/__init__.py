@@ -14,6 +14,16 @@ import requests
 import random
 import base64
 
+n= [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+random.shuffle(n)
+
+arr= [
+    [n[0],n[1],n[2],n[3]],
+    [n[4], n[5], n[6],n[7]],
+    [n[8], n[9], n[10],n[11]],
+    [n[12], n[13], n[14],n[15]]
+    ]
+
 DB_FILE="discobandit.db"
 db = sqlite3.connect(DB_FILE, check_same_thread = False) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
@@ -103,20 +113,71 @@ def newuser():
 def ducksu():
     return render_template("ducksu.html", status = False)
 
+
+##display original square
 @app.route("/duck15", methods = ['GET', 'POST'])
 def duck15():
-    n= [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-    random.shuffle(n)
-    arr= [
-    [n[0],n[1],n[2],n[3]],
-    [n[4], n[5], n[6],n[7]],
-    [n[8], n[9], n[10],n[11]],
-    [n[12], n[13], n[14],n[15]]
-    ]
+    return render_template("duck15.html", array = arr, status = False)
 
-
+# 0 goes down
+@app.route('/up/')
+def up():
     
-    return render_template("duck15.html", status = False)
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            print(arr[index1][index2])
+            if arr[index1][index2] == 0:
+                a = index1
+                b = index2
+    
+    if a != 3:
+        arr[a][b] = arr[a + 1][b]
+        arr[a + 1][b] = 0
+                
+    return render_template("duck15.html", array = arr, status = False)
+
+# 0 goes down
+@app.route('/down/')
+def down():
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            print(arr[index1][index2])
+            if arr[index1][index2] == 0:
+                if index1 != 0:
+                    arr[index1][index2] = arr[index1 - 1][index2]
+                    arr[index1 - 1][index2] = 0
+                    break
+    return render_template("duck15.html", array = arr, status = False)
+
+#0 goes right
+@app.route('/left/')
+def left():
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            print(arr[index1][index2])
+            if arr[index1][index2] == 0:
+                a = index1
+                b = index2
+    
+    if b != 3:
+        arr[a][b] = arr[a][b+1]
+        arr[a][b+1] = 0
+    return render_template("duck15.html", array = arr, status = False)
+
+@app.route('/right/')
+def right():
+
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            print(arr[index1][index2])
+            if arr[index1][index2] == 0:
+                a = index1
+                b = index2
+    
+    if b != 0:
+        arr[a][b] = arr[a][b-1]
+        arr[a][b-1] = 0
+    return render_template("duck15.html", array = arr, status = False)
 
 
 
