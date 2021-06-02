@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html>
-  {% extends "base.html" %}
-  {% block title %} Sign Up {% endblock %}
-  {% block body %}
-    <h1>
-    Welcome to Fish Media's sign up page!
-    </h1>
-    <h2>
-    Roster: Madelyn Mao, Andrew Jiang, Benjamin Gallai
-    </h2>
-    <h3>
-    No account? Sign up below!
-    </h3>
-    <form action="/signup">
-      Pick Username <input type="text" name="newusername">
-      <br></br>
-      Pick Password <input type = "password" name = "newpassword">
-      <input type="submit" name="sub" value = "Sign Up!">
-    </form>
-    {% endblock %}
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+      body{
+
+        background-color: rgb(155, 221, 246);       
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: cover;
+      }
+    </style>
+  <br>
+</head>
+
+<h1 style="font-size: 40px; text-align: center;">
+  Flop Fish
+</h1>
+<h2 style="font-size: 20px; text-align: center;">
+  Roster: Madelyn Mao, Andrew Jiang, Benjamin Gallai, Willaim Li
+</h2>
+<br></br>
+<h3 style="color:rgba(0, 166, 255, 0.88); font-size: 20px; text-align: center;">
+  Pick a username and password below!
+</h3>
+
+
+
+
+
+<div id="login-row" class="row justify-content-center align-items-center">
+  <form class="form" action="/signup">
+    <div class="form-group">
+        Pick Username:
+        <input type="text" name="newusername" class="form-control">
+    </div>
+    <div class="form-group">
+        Pick Password:
+        <input type = "password" name = "newpassword" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="submit" name="sub" class="btn btn-info btn-md" value="Sign Up">
+    </div>
+</form>
+</div>
+
 </html>

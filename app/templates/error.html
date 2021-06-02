@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
-  {% extends "base.html" %}
-  {% block title %}Error{% endblock %}
-  {% block body %}
-  <h1> Team Fish </h1>
-  <h2>
-    Roster: Madelyn Mao, Andrew Jiang, Benjamin Gallai
-  </h2>
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+      body{
+
+        background-color: rgb(155, 221, 246);       
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: cover;
+      }
+    </style>
+  <br>
+</head>
+<h1 style="font-size: 40px; text-align: center;">
+  Flop Fish
+</h1>
+<h2 style="font-size: 20px; text-align: center;">
+  Roster: Madelyn Mao, Andrew Jiang, Benjamin Gallai, Willaim Li
+</h2>
+<br></br>
+<h3 style="color:rgba(0, 166, 255, 0.88); font-size: 20px; text-align: center;">
   Sorry, we got trouble: {{ error }}
-  <br></br>
-  {% endblock %}
+</h3>
 
 </html>
