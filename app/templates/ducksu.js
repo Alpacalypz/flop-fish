@@ -2,6 +2,7 @@
 
 var c = document.getElementById("playground"); // GET CANVAS
 var batataTon = document.getElementById("batata"); // GET DOT BUTTON
+var ctx = c.getContext("2d");
 
 batataTon.addEventListener("click", tick);
 
@@ -119,11 +120,40 @@ var stopIt = () => {
 };
 
 
-
-
-
 ////////////////////////////// TEMP ///////////////////////////
 
 batataTon.addEventListener("click", tick);
 
 ///////////////////////////////////////////////////////////////
+
+//header for cat api get request, not really suppose to set access control to "*" but it breaks without it
+var myHeaders = new Headers(
+    {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Credentials': 'true',
+    }
+);
+//myInit stores request infos
+var myInit = {
+    method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default'
+};
+
+//using cors-anywhere because setting mode to "no-cors" returns an opaque type that can't be parsed through
+var request = new Request('https://cors-anywhere.herokuapp.com/https://random-d.uk/api/v2/random', myInit);
+
+//fetch to GET request, parses response to json then puts duck pic as background on canvas
+fetch(request)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.url)
+    image = new Image()
+    image.src = data.url
+    image.onload = function() {
+        ctx.drawImage(image, 0 ,0, c.width, c.height)
+    }
+  });
+  
