@@ -12,3 +12,16 @@ madelynM, williamL -- 2021-06-01 10:56PM
 
 gallaiB -- 2021-06-01 23:22PM
 - added initial version of ducksu.js
+
+andrewJ == 2021-06-02 2:54AM
+- implemented duck api using javascript Request so now we have QUACK QUACKERS for canvas backgrounds
+- issues encountered:
+  -Error: Access to fetch at 'https://random-d.uk/api/v2/random' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+    -duck api server was set up to send using origin 'null' which is blocked through CORS policy as a security measure. If you were to set mode to 'no-cors' and allow all 'Access-Control-Allow-Origin' using '*', the browser will instead send an opaque type response which whose values cannot be parsed.
+    - to get around this, add '''https://cors-anywhere.herokuapp.com/''' at the head of the url to proxy the request so that it can add CORS headers. You are then able to parse through the response as usual
+  - TODO: determine canvas size and perhaps limit api request to certain file sizes to improve load speed
+    
+    
+ 
+ 
+
