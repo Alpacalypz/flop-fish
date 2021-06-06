@@ -21,7 +21,8 @@ andrewJ == 2021-06-02 2:54AM
     - to get around this, add '''https://cors-anywhere.herokuapp.com/''' at the head of the url to proxy the request so that it can add CORS headers. You are then able to parse through the response as usual
   - TODO: determine canvas size and perhaps limit api request to certain file sizes to improve load speed
     
-    
+ madelynM -- 2021-06-06 06:45PM
+- connected photos to duck15 game
  
  
 
