@@ -117,7 +117,12 @@ def ducksu():
 ##display original square
 @app.route("/duck15", methods = ['GET', 'POST'])
 def duck15():
-    return render_template("duck15.html", array = arr, status = False)
+    stringarr = []
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            stringarr.append(str(arr[index1][index2]))
+    return render_template("duck15.html", array = arr, array1 = stringarr, status = False)
+    #return render_template("duck15.html", array = arr, status = False)
 
 # 0 goes down
 @app.route('/up/')
@@ -133,10 +138,14 @@ def up():
     if a != 3:
         arr[a][b] = arr[a + 1][b]
         arr[a + 1][b] = 0
-                
-    return render_template("duck15.html", array = arr, status = False)
+    stringarr = []
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            stringarr.append(str(arr[index1][index2]))
 
-# 0 goes down
+    return render_template("duck15.html", array = arr, array1 = stringarr, status = False)
+
+# 0 goes up
 @app.route('/down/')
 def down():
     for index1, items in enumerate(arr):
@@ -147,7 +156,11 @@ def down():
                     arr[index1][index2] = arr[index1 - 1][index2]
                     arr[index1 - 1][index2] = 0
                     break
-    return render_template("duck15.html", array = arr, status = False)
+    stringarr = []
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            stringarr.append(str(arr[index1][index2]))
+    return render_template("duck15.html", array = arr, array1 = stringarr, status = False)
 
 #0 goes right
 @app.route('/left/')
@@ -162,7 +175,11 @@ def left():
     if b != 3:
         arr[a][b] = arr[a][b+1]
         arr[a][b+1] = 0
-    return render_template("duck15.html", array = arr, status = False)
+    stringarr = []
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            stringarr.append(str(arr[index1][index2]))
+    return render_template("duck15.html", array = arr, array1 = stringarr, status = False)
 
 @app.route('/right/')
 def right():
@@ -177,7 +194,11 @@ def right():
     if b != 0:
         arr[a][b] = arr[a][b-1]
         arr[a][b-1] = 0
-    return render_template("duck15.html", array = arr, status = False)
+    stringarr = []
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            stringarr.append(str(arr[index1][index2]))
+    return render_template("duck15.html", array = arr, array1 = stringarr, status = False)
 
 
 
