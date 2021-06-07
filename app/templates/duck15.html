@@ -3,6 +3,35 @@
   <head>
     
     <title>Flop Fish!</title>
+    <p>
+      Score: {{Score}}
+    </p>
+
+    <script>
+      document.addEventListener("keypress", function(event) {
+        console.log(event.key);
+
+        if (event.key == "d") {
+
+          document.getElementById("right").click();
+      }
+      if (event.key == "w") {
+
+          document.getElementById("up").click();
+      }
+      if (event.key == "a") {
+
+          document.getElementById("left").click();
+      }
+      if (event.key == "s") {
+
+          document.getElementById("down").click();
+      }
+
+
+    });
+    </script>
+
   </head>
   <body>
     <h1> Welcome {{user}} to duck15! </h1>
@@ -69,10 +98,10 @@
    </TABLE>
 
   
-  <button> <a href="/up/">up</a></button>
-  <button> <a href="/down/">down</a></button>
-  <button> <a href="/left/">left</a></button>
-  <button> <a href="/right/">right</a></button>
+  <button> <a href="/up/" id="up">up</a></button>
+  <button> <a href="/down/" id="down">down</a></button>
+  <button> <a href="/left/" id="left">left</a></button>
+  <button> <a href="/right/" id="right">right</a></button>
 
   </body>
 </html>
