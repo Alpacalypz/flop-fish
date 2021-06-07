@@ -13,7 +13,7 @@ madelynM, williamL -- 2021-06-01 10:56PM
 gallaiB -- 2021-06-01 23:22PM
 - added initial version of ducksu.js
 
-andrewJ == 2021-06-02 2:54AM
+andrewJ -- 2021-06-02 2:54AM
 - implemented duck api using javascript Request so now we have QUACK QUACKERS for canvas backgrounds
 - issues encountered:
   -Error: Access to fetch at 'https://random-d.uk/api/v2/random' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -23,6 +23,9 @@ andrewJ == 2021-06-02 2:54AM
     
  madelynM -- 2021-06-06 06:45PM
 - connected photos to duck15 game
+
+andrewJ -- 2021-06-06 23:05PM
+- added javascript functionality for buttons so duck15 can now be controlled using wasd
  
  
 
