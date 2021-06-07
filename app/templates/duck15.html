@@ -107,6 +107,12 @@
   <div class="flex-parent jc-center">
     <button class = "center"> <a href="/down/" id="down">down</a></button>
    </div>
+   </TABLE>
+
+  <button> <a href={{url_for("up", score = Score)}} id="up">up</a></button>
+  <button> <a href={{url_for("down", score = Score)}} id="down">down</a></button>
+  <button> <a href={{url_for("left", score = Score)}} id="left">left</a></button>
+  <button> <a href={{url_for("right", score = Score)}} id="right">right</a></button>
 
   </body>
 </html>

@@ -17,7 +17,7 @@ import base64
 n= [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 random.shuffle(n)
 
-score = 0
+#score = 0
 arr= [
     [n[0],n[1],n[2],n[3]],
     [n[4], n[5], n[6],n[7]],
@@ -117,37 +117,38 @@ def ducksu():
 ##display original square
 @app.route("/duck15", methods = ['GET', 'POST'])
 def duck15():
+    score = 0
     stringarr = []
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, status = False)
+    return render_template("duck15.html", array = arr, array1 = stringarr,Score = score, status = False)
     #return render_template("duck15.html", array = arr, status = False)
 
 # 0 goes down
-@app.route('/up/')
-def up():
+@app.route('/up/<int:score>')
+def up(score):
+    #print(score)
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             #print(arr[index1][index2])
             if arr[index1][index2] == 0:
                 a = index1
                 b = index2
-                #score += 1
+                score += 1
     
     if a != 3:
         arr[a][b] = arr[a + 1][b]
         arr[a + 1][b] = 0
-        #score += 1
     stringarr = []
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score + 1, status = False)
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
 
 # 0 goes up
-@app.route('/down/')
-def down():
+@app.route('/down/<int:score>')
+def down(score):
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             #print(arr[index1][index2])
@@ -155,55 +156,53 @@ def down():
                 if index1 != 0:
                     arr[index1][index2] = arr[index1 - 1][index2]
                     arr[index1 - 1][index2] = 0
-                    #score += 1
+                    score += 1
                     break
     stringarr = []
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score + 1, status = False)
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
 
 #0 goes right
-@app.route('/left/')
-def left():
+@app.route('/left/<int:score>')
+def left(score):
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             #print(arr[index1][index2])
             if arr[index1][index2] == 0:
                 a = index1
                 b = index2
-                #score += 1
+                score += 1
     
     if b != 3:
         arr[a][b] = arr[a][b+1]
         arr[a][b+1] = 0
-        #score += 1
     stringarr = []
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score + 1, status = False)
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
 
-@app.route('/right/')
-def right():
-    print(score)
+@app.route('/right/<int:score>')
+def right(score):
+    #print(score)
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             #print(arr[index1][index2])
             if arr[index1][index2] == 0:
                 a = index1
                 b = index2
-                #score += 1
+                score += 1
     
     if b != 0:
         arr[a][b] = arr[a][b-1]
         arr[a][b-1] = 0
-        #score += 1
     stringarr = []
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score + 1, status = False)
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
 
 
 
