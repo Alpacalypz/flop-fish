@@ -1,21 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    body {
+    padding-top: 20px;
+    } 
+      .card{box-shadow: 12px 12px 2px 1px rgba(3, 8, 20, 0.1) border-radius: 10px;
+      }
+      .card {border-radius: 10px;
+      }
+      .card-text{font-size: 18px;
+      }
+      .card-title{font-size: 25px;
+      }
+
+    </style>
+
 
     <title>Hello, world!</title>
   </head>
   <body>
     <h1> Welcome {{user}} to Flop Fish! </h1>
 
-    <a href="/ducksu" class="btn btn-info" role="button">ducksu</a>
-    <a href="/duck15" class="btn btn-info" role="button">15duck</a>
+<div class="card-deck" style="padding-left: 40px;">
 
+<div class="card border-primary" style="max-width: 40rem;">
+  <img class="card-img-top" src="..." alt="ducksu image">
+  <div class="card-body">
+    <h5 class="card-title">ducksu</h5>
+    <p class="card-text">The popular rhythm game Osu ... but ducks? Click some ducks and hear some duck noises. QUACK!</p>
+    <a href="/ducksu" class="btn btn-primary">Play</a>
+  </div>
+</div>
+    
+<div class="card border-primary" style="max-width: 40rem;">
+  <img class="card-img-top" src="fullDuck.jpeg" alt="Daniel Image">
+  <div class="card-body">
+    <h5 class="card-title">15Ducks</h5>
+    <p class="card-text">Solve this puzzle modeled after the popular 15 puzzle game. Rearrange the puzzle pieces back in order. The final puzzle image features everyone's beloved support duck Daniel!</p>
+    <a href="/duck15" class="btn btn-primary">Play</a>
+  </div>
+</div>
+
+</div>
 
   </body>
 </html>
