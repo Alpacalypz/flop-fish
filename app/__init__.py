@@ -203,12 +203,15 @@ def left(score):
             stringarr.append(str(arr[index1][index2]))
     win = "Keep going"
     i = 1
-    for x in n[:-1]:
-        if x == i:
-            i += 1
-        else:
-            break
-        win = "Congrats, You Won!"
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            if arr[index1][index2] == i:
+                i+=1
+                if i == 15:
+                    i = 0
+                    win = "Congrats, You Won!"
+            else:
+                break
     return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 @app.route('/right/<int:score>')
