@@ -17,7 +17,6 @@ import base64
 n= [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 random.shuffle(n)
 
-#score = 0
 arr= [
     [n[0],n[1],n[2],n[3]],
     [n[4], n[5], n[6],n[7]],
@@ -123,7 +122,7 @@ def duck15():
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
     return render_template("duck15.html", array = arr, array1 = stringarr,Score = score, status = False)
-    #return render_template("duck15.html", array = arr, status = False)
+
 
 # 0 goes down
 @app.route('/up/<int:score>')
@@ -144,7 +143,16 @@ def up(score):
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
+    
+    win = "Keep going"
+    i = 1
+    for x in n[:-1]:
+        if x == i:
+            i += 1
+        else:
+            break
+        win = "Congrats, You Won!"
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 # 0 goes up
 @app.route('/down/<int:score>')
@@ -162,7 +170,16 @@ def down(score):
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
+    
+    win = "Keep going"
+    i = 1
+    for x in n[:-1]:
+        if x == i:
+            i += 1
+        else:
+            break
+        win = "Congrats, You Won!"
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 #0 goes right
 @app.route('/left/<int:score>')
@@ -182,7 +199,15 @@ def left(score):
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
+    win = "Keep going"
+    i = 1
+    for x in n[:-1]:
+        if x == i:
+            i += 1
+        else:
+            break
+        win = "Congrats, You Won!"
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 @app.route('/right/<int:score>')
 def right(score):
@@ -202,9 +227,15 @@ def right(score):
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, status = False)
-
-
+    win = "Keep going"
+    i = 1
+    for x in n[:-1]:
+        if x == i:
+            i += 1
+        else:
+            break
+        win = "Congrats, You Won!"
+    return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

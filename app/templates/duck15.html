@@ -144,7 +144,11 @@
         <p>
           Score: {{Score}}
         </p>
-        <p>Feel free to use w(up) a(left) s(down) d(right) keys!</p>
+
+        <p style="color:rgb(0, 221, 255);font-size:35px;">
+          {{winstatus}}
+        </p>
+        <p>Or use w(up) a(left) s(down) d(right) keys!</p>
 
         <div class="flex-parent jc-center">
          <button class = "center"> <a href={{url_for("up", score = Score)}} id="up">up</a></button>
