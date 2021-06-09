@@ -148,12 +148,15 @@ def up(score):
     
     win = "Keep going"
     i = 1
-    for x in n[:-1]:
-        if x == i:
-            i += 1
-        else:
-            break
-        win = "Congrats, You Won!"
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            if arr[index1][index2] == i:
+                i+=1
+                if i == 15:
+                    win = "Congrats, You Won!"
+                    break
+            else:
+                break
     return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 # 0 goes up
@@ -175,12 +178,15 @@ def down(score):
     
     win = "Keep going"
     i = 1
-    for x in n[:-1]:
-        if x == i:
-            i += 1
-        else:
-            break
-        win = "Congrats, You Won!"
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            if arr[index1][index2] == i:
+                i+=1
+                if i == 15:
+                    win = "Congrats, You Won!"
+                    break
+            else:
+                break
     return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 #0 goes right
@@ -208,8 +214,8 @@ def left(score):
             if arr[index1][index2] == i:
                 i+=1
                 if i == 15:
-                    i = 0
                     win = "Congrats, You Won!"
+                    break
             else:
                 break
     return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
@@ -234,12 +240,15 @@ def right(score):
             stringarr.append(str(arr[index1][index2]))
     win = "Keep going"
     i = 1
-    for x in n[:-1]:
-        if x == i:
-            i += 1
-        else:
-            break
-        win = "Congrats, You Won!"
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            if arr[index1][index2] == i:
+                i+=1
+                if i == 15:
+                    win = "Congrats, You Won!"
+                    break
+            else:
+                break
     return render_template("duck15.html", array = arr, array1 = stringarr, Score = score, winstatus = win, status = False)
 
 if __name__ == "__main__": #false if this file imported as module
