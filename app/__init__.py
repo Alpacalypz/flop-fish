@@ -13,6 +13,7 @@ import json
 import requests
 import random
 import base64
+from playsound import playsound
 
 n= [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 random.shuffle(n)
@@ -121,6 +122,7 @@ def duck15():
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
+    playsound('Duck-quack.mp3')
     return render_template("duck15.html", array = arr, array1 = stringarr,Score = score, status = False)
 
 
