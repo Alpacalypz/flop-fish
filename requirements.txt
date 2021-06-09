@@ -2,3 +2,5 @@ Flask==1.1.2
 requests
 base64
 sqlite3
+playsound
+-U PyObjC
