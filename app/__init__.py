@@ -122,7 +122,25 @@ def duck15():
     for index1, items in enumerate(arr):
         for index2, itemss in enumerate(items):
             stringarr.append(str(arr[index1][index2]))
-    playsound('Duck-quack.mp3')
+    #playsound('Duck-quack.mp3')
+    return render_template("duck15.html", array = arr, array1 = stringarr,Score = score, status = False)
+
+@app.route("/reset", methods = ['GET', 'POST'])
+def reset():
+    global arr
+    random.shuffle(n)
+    arr= [
+    [n[0],n[1],n[2],n[3]],
+    [n[4], n[5], n[6],n[7]],
+    [n[8], n[9], n[10],n[11]],
+    [n[12], n[13], n[14],n[15]]
+    ]
+    score = 0
+    stringarr = []
+    for index1, items in enumerate(arr):
+        for index2, itemss in enumerate(items):
+            stringarr.append(str(arr[index1][index2]))
+    #playsound('Duck-quack.mp3')
     return render_template("duck15.html", array = arr, array1 = stringarr,Score = score, status = False)
 
 
