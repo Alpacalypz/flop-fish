@@ -2,44 +2,63 @@
 
 var c = document.getElementById("playground"); // GET CANVAS
 var batataTon = document.getElementById("batata"); // GET DOT BUTTON
-var ctx = c.getContext("2d");
 
 batataTon.addEventListener("click", tick);
-
-console.log("wadadfafafafaf");
-
-var durationT = 200;
 
 ///////////////////////////////////////////////////////////////
 
 
 
 // uniform radius for inner circles
-var gInRadius = 100;
+var gInRadius = 50;
 // uniform radius for outer circles
-var gOutRadius = 200;
+var gOutRadius = 120;
 //// global HitCircle counter
 //var idCounter = 0;
 // array of active HitCircles
 var activeHitCircles = [];
 // # of frames inbetween HitCircle creation
-var delay = 10;
+var delay = 20;
 // # of frames since previous HitCircle creation
 var framesSince = 0;
+
+// current click location (x)
+var clickX = 0;
+// current click location (y)
+var clickY = 0;
+
+var mouseDown = false;
+
+onmousedown = function(e) {
+	clickX = e.clientX;
+	clickY = e.clientY;
+	mouseDown = true;
+	}
+
+onmouseup = function(e) {
+	mouseDown = false;
+	}
+
+var songD = 80;
+
+var fps = 30;
+
+var perfectScore = 0;
+var score = 0;
+
+var tickCount = 0;
 
 // a HitCircle has a ceneter (x, y), a duration (number of frames it takes for the outer circle to reach the inner circle)
 // an inner radius (defined globally), an outer radius (defined globally)
 //// an ID number
-// an isActive boolean
 class HitCircle {
 	constructor(x, y, duration) {
 		this.x = x;
 		this.y = y;
 		this.duration = duration;
 		this.inRadius = gInRadius;
-		this.outRadius = gOutRadius;
-//		this.id = idCounter;
-//		idCounter++;
+		this.outRadius = gInRadius + duration;
+		this.initOR = this.outRadius
 		this.isActive = (this.outRadius >= this.inRadius);
 	}
 }
@@ -61,15 +80,35 @@ var clear = (e) => {
 // 3) clear canvas
 // 4) draw all active HitCircles
 var tick = () => {
-	console.log("tick!");
+	// --- step 0 ---
+	if (activeHitCircles.length > 0) {
+		var clickDist = Math.sqrt((clickX - activeHitCircles[0].x)**2 + (clickY - activeHitCircles[0].y)**2);
+		if (clickDist < gInRadius && mouseDown) {
+			score += (activeHitCircles[0].initOR - activeHitCircles[0].outRadius) / (activeHitCircles[0].initOR - gInRadius);
+			activeHitCircles.shift();
+		}
+	}
+	
+	// --- step 1 ---
+	for (hitCircle of activeHitCircles) {
+		hitCircle.outRadius -= 1;
+		hitCircle.isActive = (hitCircle.outRadius >= hitCircle.inRadius);
+		
+		if (!hitCircle.isActive) {
+			activeHitCircles.shift();
+		}
+	}
+	
 	// --- step 2 ---
 	if (framesSince == delay) {
 		// makes new HitCircle centered at random coords s.t. the entire HitCircle lies on the canvas
 		let nextHitCircle = new HitCircle(
 			Math.floor(Math.random() * (c.width - 2 * gOutRadius)) + gOutRadius, 
 			Math.floor(Math.random() * (c.height - 2 * gOutRadius)) + gOutRadius, 
-			200
+			Math.ceil(gOutRadius - gInRadius - (40 * tickCount) / (fps * songD) )
 		);
+
+		perfectScore += (Math.ceil(gOutRadius - gInRadius - (40 * tickCount) / (fps * songD) ) + gInRadius) / Math.ceil(gOutRadius - gInRadius - (40 * tickCount) / (fps * songD) );
 		
 		if (nextHitCircle.isActive) {
 			activeHitCircles.push(nextHitCircle);
@@ -82,36 +121,22 @@ var tick = () => {
 	ctx.clearRect(0, 0, c.width, c.height);
 	
 	// --- step 4 ---
-	for (hitCircle in activeHitCircles) {
+	for (hitCircle of activeHitCircles) {
 		ctx.beginPath();
 		ctx.arc(hitCircle.x, hitCircle.y, hitCircle.inRadius, 0, 2 * Math.PI);
+		ctx.stroke();
+		ctx.beginPath();
 		ctx.arc(hitCircle.x, hitCircle.y, hitCircle.outRadius, 0, 2 * Math.PI);
-		ctx.fill();
+		ctx.stroke();
 	}
 	
-	requestID = window.requestAnimationFrame(tick); // adds step to the queue for the next animation frame
-};
+	tickCount++;
 
-var drawDot = () => {
-    console.log("drawDot invoked...");
-    // clears previous step function from the queue of functions for the next animation frame
-    // so that step doesn't keep calling itself after we put another step in the queue
-    // in case drawDot was called twice without calling stopIt
-    window.cancelAnimationFrame(requestID);
-    var step = () => {
-        ctx.clearRect(0, 0, c.width, c.height); // clears the canvas
-        ctx.beginPath(); // starts the path for the circle
-        ctx.arc(c.width / 2, c.height / 2, radius, 0, 2 * Math.PI); // makes the circle
-        ctx.fill(); // renders the path
-        if (radius > c.width / 2) growing = false; // if the circle is too big, stop growing
-        if (radius < 1) growing = true; // if the circle is too small, start growing
-        radius += growing * 2 - 1; // true * 2 - 1 => 1, false * 2 - 1 => -1
-        requestID = window.requestAnimationFrame(step); // adds step to the queue for the next animation frame
-        // each frame, step should be called exactly once
-    };
-    requestID = window.requestAnimationFrame(step); // starts the cycle of step calling itself each frame
+	if (tickCount < songD * fps) {
+		console.log(score / perfectScore);
+		requestID = setTimeout(() => window.requestAnimationFrame(tick), 1000/fps - 15); // adds step to the queue for the next animation frame
+	}
 };
-
 
 var stopIt = () => {
     console.log("stopIt invoked...");
@@ -120,11 +145,15 @@ var stopIt = () => {
 };
 
 
+
+
+
 ////////////////////////////// TEMP ///////////////////////////
 
 batataTon.addEventListener("click", tick);
 
 ///////////////////////////////////////////////////////////////
+
 
 //header for cat api get request, not really suppose to set access control to "*" but it breaks without it
 var myHeaders = new Headers(
@@ -156,4 +185,3 @@ fetch(request)
         ctx.drawImage(image, 0 ,0, c.width, c.height)
     }
   });
-  
