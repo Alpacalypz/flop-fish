@@ -39,7 +39,7 @@ onmouseup = function(e) {
 	mouseDown = false;
 	}
 
-var songD = 80;
+var songD = 20;
 
 var fps = 30;
 
@@ -47,6 +47,8 @@ var perfectScore = 0;
 var score = 0;
 
 var tickCount = 0;
+
+var duckI;
 
 // a HitCircle has a ceneter (x, y), a duration (number of frames it takes for the outer circle to reach the inner circle)
 // an inner radius (defined globally), an outer radius (defined globally)
@@ -119,9 +121,11 @@ var tick = () => {
 	
 	// --- step 3 ---
 	ctx.clearRect(0, 0, c.width, c.height);
+	ctx.drawImage(image, 0 ,0, c.width, c.height)
 	
 	// --- step 4 ---
 	for (hitCircle of activeHitCircles) {
+		ctx.lineWidth = 3;
 		ctx.beginPath();
 		ctx.arc(hitCircle.x, hitCircle.y, hitCircle.inRadius, 0, 2 * Math.PI);
 		ctx.stroke();
