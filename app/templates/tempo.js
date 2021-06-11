@@ -6,11 +6,9 @@ var batataTon = document.getElementById("batata"); // GET DOT BUTTON
 batataTon.addEventListener("click", tick);
 
 ///////////////////////////////////////////////////////////////
-song_duck = new Audio("../static/duck_song.mp3");
 
-song_quack = new Audio("../static/ducksu_quack.mp3");
 
-///////////////////////////////////////////////////////////////
+
 // uniform radius for inner circles
 var gInRadius = 50;
 // uniform radius for outer circles
@@ -34,8 +32,6 @@ var mouseDown = false;
 onmousedown = function(e) {
 	clickX = e.clientX;
 	clickY = e.clientY;
-	song_quack.play();
-
 	mouseDown = true;
 	}
 
@@ -43,7 +39,8 @@ onmouseup = function(e) {
 	mouseDown = false;
 	}
 
-var songD = 31
+var songD = 20;
+
 var fps = 30;
 
 var perfectScore = 0;
@@ -85,11 +82,6 @@ var clear = (e) => {
 // 3) clear canvas
 // 4) draw all active HitCircles
 var tick = () => {
-	if (tickCount == 0) {
-	song_duck.play();
-	}
-	
-	if (tickCount < songD * fps) {
 	// --- step 0 ---
 	if (activeHitCircles.length > 0) {
 		var clickDist = Math.sqrt((clickX - activeHitCircles[0].x)**2 + (clickY - activeHitCircles[0].y)**2);
@@ -148,13 +140,6 @@ var tick = () => {
 		console.log(score / perfectScore);
 		requestID = setTimeout(() => window.requestAnimationFrame(tick), 1000/fps - 15); // adds step to the queue for the next animation frame
 	}
-	else {
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.font = "288px sans-serif";
-		ctx.textAlign = "center";
-		ctx.fillText(Math.floor(100 * score / perfectScore) + "%", c.width / 2, c.height / 2)
-	}
-}
 };
 
 var stopIt = () => {
